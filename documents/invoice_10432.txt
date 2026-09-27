@@ -1,0 +1,21 @@
+Document Type: Invoice
+Invoice Number: INV-10432
+Issue Date: 2024-06-12
+Due Date: 2024-07-12
+Vendor: Crestline Dental Supply Co
+Bill To: Harborview Dental Group
+Amount Due: $12,340.00
+Payment Terms: Net 30
+Status: Unpaid
+
+Line items:
+          - Composite resin cartridges (x40)              $6,200.00
+          - Disposable handpieces (x120)                  $4,560.00
+          - Sterilization pouches, case of 500 (x6)        $1,580.00
+
+        Subtotal: $12,340.00
+        Tax: $0.00 (resale exempt)
+        Amount Due: $12,340.00
+
+        Please remit payment by the Due Date to avoid late fees under the
+        governing Supply Agreement CTR-2044.
