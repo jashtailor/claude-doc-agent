@@ -1,0 +1,20 @@
+Document Type: Invoice
+Invoice Number: INV-10498
+Issue Date: 2024-07-02
+Due Date: 2024-08-01
+Vendor: Meridian Logistics LLC
+Bill To: Northwind Freight Co
+Amount Due: $28,915.50
+Payment Terms: Net 30
+Status: Paid
+
+Line items:
+          - Warehousing, June 2024 (per Agreement CTR-2031)   $19,500.00
+          - Cross-docking fees (312 pallets)                   $6,240.00
+          - Last-mile delivery surcharge (fuel)                $3,175.50
+
+        Subtotal: $28,915.50
+        Tax: $0.00
+        Amount Due: $28,915.50
+
+        Payment received in full on 2024-07-20 via ACH transfer.
