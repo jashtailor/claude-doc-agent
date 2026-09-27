@@ -1,0 +1,20 @@
+Document Type: Internal Memo
+Memo ID: MEMO-0093
+Date: 2024-06-20
+From: David Okafor, Procurement Lead
+To: Finance Committee
+Subject: Q2 Vendor Performance Review
+Status: Draft
+
+This memo summarizes vendor performance for Q2 2024. Crestline
+        Dental Supply Co met all delivery SLAs under Supply Agreement
+        CTR-2044 with an average lead time of 3.2 days, ahead of the
+        contractual 5-day guarantee.
+
+        Meridian Logistics LLC experienced one late shipment in May 2024 due
+        to a regional weather event; no penalty was assessed per the force
+        majeure clause in CTR-2031.
+
+        Recommendation: renew both agreements at current pricing. Beacon
+        Office Supply remains an ad hoc vendor and is not recommended for a
+        standing agreement given low order volume.
