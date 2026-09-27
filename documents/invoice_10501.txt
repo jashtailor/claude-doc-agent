@@ -1,0 +1,17 @@
+Document Type: Invoice
+Invoice Number: INV-10501
+Issue Date: 2024-07-05
+Due Date: 2024-08-04
+Vendor: Summit Ridge Properties LLC
+Bill To: Pallas Analytics Inc
+Amount Due: $11,466.67
+Payment Terms: Due on receipt
+Status: Unpaid
+
+Monthly rent invoice for Suite 400, 210 Beacon Street, Boston, MA,
+        covering the period 2024-07-01 through 2024-07-31, per Office Lease
+        Agreement CTR-2059.
+
+        Base rent: $11,466.67
+        CAM charges: included
+        Amount Due: $11,466.67
