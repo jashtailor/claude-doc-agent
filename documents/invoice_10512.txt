@@ -1,0 +1,19 @@
+Document Type: Invoice
+Invoice Number: INV-10512
+Issue Date: 2024-07-18
+Due Date: 2024-08-17
+Vendor: Beacon Office Supply
+Bill To: Pallas Analytics Inc
+Amount Due: $742.16
+Payment Terms: Net 30
+Status: Unpaid
+
+Line items:
+          - Standing desks (x2)                              $540.00
+          - Toner cartridges (x6)                            $162.16
+          - Shipping                                          $40.00
+
+        Amount Due: $742.16
+
+        This vendor is not under a standing supply agreement; purchases are
+        made on a per-order basis via purchase order PO-3391.
