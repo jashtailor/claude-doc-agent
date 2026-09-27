@@ -1,0 +1,24 @@
+Document Type: Office Lease Agreement
+Document ID: CTR-2059
+Effective Date: 2023-09-01
+Party A: Summit Ridge Properties LLC
+Party B: Pallas Analytics Inc
+Term: 36 months
+Governing Law: State of Massachusetts
+Total Contract Value: $412,800.00
+Payment Terms: Due on the 1st of each month
+Status: Active
+
+Summit Ridge Properties LLC ("Landlord") leases approximately 6,200
+        square feet of office space at 210 Beacon Street, Suite 400, Boston,
+        MA to Pallas Analytics Inc ("Tenant") for use as general office space.
+
+        Monthly base rent is $11,466.67, escalating 3% annually on the
+        anniversary of the Effective Date. Tenant is responsible for its
+        pro-rata share of common area maintenance and property taxes.
+        Tenant may not sublease any portion of the premises without
+        Landlord's prior written consent.
+
+        Landlord shall maintain the building's HVAC, elevators, and common
+        areas in good working order. Tenant shall carry commercial tenant
+        insurance covering its own property and liability.
