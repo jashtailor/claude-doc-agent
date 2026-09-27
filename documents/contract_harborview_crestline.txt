@@ -1,0 +1,24 @@
+Document Type: Supply Agreement
+Document ID: CTR-2044
+Effective Date: 2024-01-15
+Party A: Crestline Dental Supply Co
+Party B: Harborview Dental Group
+Term: 12 months
+Governing Law: State of New York
+Total Contract Value: $96,200.00
+Payment Terms: Net 30
+Status: Active
+
+This Supply Agreement governs the recurring purchase of dental
+        consumables (composite resin, disposable handpieces, sterilization
+        pouches) by Harborview Dental Group from Crestline Dental Supply Co.
+
+        Crestline shall guarantee delivery within 5 business days of a
+        purchase order and shall replace any defective product at no cost.
+        Harborview commits to a minimum quarterly purchase volume of
+        $18,000. Pricing is fixed for the Term above, subject to a single
+        renegotiation if raw material costs rise more than 10%.
+
+        Either party may terminate for convenience with 45 days written
+        notice. Confidential pricing terms in this Agreement may not be
+        disclosed to third parties.
