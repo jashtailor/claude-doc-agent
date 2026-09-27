@@ -21,7 +21,7 @@ _STOPWORDS = {
 }
 
 _WORD_RE = re.compile(r"[a-zA-Z0-9$%.]+")
-_FIELD_LINE_RE = re.compile(r"^([A-Za-z][A-Za-z /]*?):\s*(.+)$")
+_FIELD_LINE_RE = re.compile(r"^([A-Za-z][A-Za-z0-9 /#&.]*?):\s*(.+)$")
 
 
 @dataclass
@@ -75,11 +75,12 @@ def search_docs(query: str, max_results: int = 3) -> list[dict]:
     document to dig into with extract_field.
     """
     keywords = _keywords(query)
+    keyword_res = [re.compile(r"\b" + re.escape(kw) + r"\b") for kw in keywords]
     hits: list[SearchHit] = []
     for path in sorted(DOCS_DIR.glob("*.txt")):
         content = path.read_text()
         lower = content.lower()
-        score = sum(lower.count(kw) for kw in keywords)
+        score = sum(len(kw_re.findall(lower)) for kw_re in keyword_res)
         if score > 0:
             hits.append(SearchHit(path.name, score, _snippet_for(content, keywords)))
     hits.sort(key=lambda h: h.score, reverse=True)
@@ -130,7 +131,8 @@ def extract_field(document: str, field: str) -> dict:
     fields = _parse_fields(path.read_text())
     target_tokens = _normalize(field)
 
-    best_key, best_overlap = None, 0
+    best_overlap = 0
+    best_keys: list[str] = []
     for key in fields:
         key_tokens = _normalize(key)
         overlap = len(target_tokens & key_tokens)
@@ -140,11 +142,20 @@ def extract_field(document: str, field: str) -> dict:
                     overlap = 1
                     break
         if overlap > best_overlap:
-            best_key, best_overlap = key, overlap
+            best_overlap = overlap
+            best_keys = [key]
+        elif overlap > 0 and overlap == best_overlap:
+            best_keys.append(key)
 
-    if best_key is None:
+    if not best_keys:
         return {
             "error": f"No field matching '{field}' in {path.name}.",
             "available_fields": list(fields.keys()),
         }
+    if len(best_keys) > 1:
+        return {
+            "error": f"'{field}' matches more than one field in {path.name}: {', '.join(best_keys)}.",
+            "candidates": {k: fields[k] for k in best_keys},
+        }
+    best_key = best_keys[0]
     return {"document": path.name, "field": best_key, "value": fields[best_key]}

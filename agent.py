@@ -15,6 +15,7 @@ stand-in for the model so the whole demo works offline.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import sys
@@ -22,6 +23,7 @@ import sys
 import doc_tools
 
 MODEL = "claude-sonnet-5"
+MAX_TURNS = 8
 
 SYSTEM_PROMPT = """You are a document assistant for a small back office. You \
 answer questions about the contracts, invoices, and internal memos in the \
@@ -102,7 +104,7 @@ def run_real(question: str) -> None:
     client = anthropic.Anthropic()
     messages = [{"role": "user", "content": question}]
 
-    while True:
+    for _ in range(MAX_TURNS):
         printed_any = False
         with client.messages.stream(
             model=MODEL,
@@ -122,20 +124,25 @@ def run_real(question: str) -> None:
         messages.append({"role": "assistant", "content": final.content})
 
         if final.stop_reason != "tool_use":
-            break
+            return
 
         tool_results = []
         for block in final.content:
             if block.type == "tool_use":
+                args = ", ".join(f"{k}={v!r}" for k, v in block.input.items())
+                print(f"[tool call: {block.name}({args})]")
                 result = call_tool(block.name, block.input)
+                print(f"[tool result: {json.dumps(result)}]")
                 tool_results.append(
                     {
                         "type": "tool_result",
                         "tool_use_id": block.id,
-                        "content": str(result),
+                        "content": json.dumps(result),
                     }
                 )
         messages.append({"role": "user", "content": tool_results})
+
+    print(f"[stopped after {MAX_TURNS} turns without a final answer]", file=sys.stderr)
 
 
 # --------------------------------------------------------------------------
@@ -148,6 +155,10 @@ FIELD_PHRASES = [
     "payment terms", "governing law", "term", "status",
     "invoice number", "document id", "memo id",
     "party a", "party b", "bill to", "vendor", "from", "to", "subject",
+]
+
+_FIELD_PHRASE_PATTERNS = [
+    (phrase, re.compile(r"\b" + re.escape(phrase) + r"\b")) for phrase in FIELD_PHRASES
 ]
 
 
@@ -164,8 +175,8 @@ def _detect_field(question: str) -> str | None:
     lowered = question.lower()
     if not any(trigger in lowered for trigger in _VALUE_TRIGGERS):
         return None
-    for phrase in FIELD_PHRASES:
-        if phrase in lowered:
+    for phrase, pattern in _FIELD_PHRASE_PATTERNS:
+        if pattern.search(lowered):
             return phrase
     return None
 
@@ -192,7 +203,12 @@ def run_mock(question: str) -> None:
 
     if field:
         result = doc_tools.extract_field(top_document, field)
-        if "error" in result:
+        if "candidates" in result:
+            _stream_out(
+                f"'{field}' matches more than one field on {top_document}: "
+                f"{', '.join(result['candidates'])}."
+            )
+        elif "error" in result:
             _stream_out(
                 f"I found {top_document} as the closest match, but couldn't "
                 f"pull a '{field}' field from it. It has: "

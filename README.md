@@ -125,19 +125,28 @@ snippet from each, safety memo first, which is the useful one, but the
 other two memos tag along since they also mention loading-dock-adjacent
 words.
 
-Here is what the same first question looks like against the real API
-(shortened; the real run streams token by token):
+Here is what the same first question looks like against the real API. The
+model's own wording will vary between runs, but the tool call and tool
+result lines are exactly what `run_real` prints, traced against the real
+`doc_tools` functions below:
 
 ```
 $ python agent.py "What is the amount due on the Harborview invoice?"
 Let me look that up.
-[tool call: search_docs(query="Harborview invoice amount due")]
-[tool result: invoice_10432.txt, score 4, "...Bill To: Harborview Dental Group..."]
-[tool call: extract_field(document="invoice_10432.txt", field="amount due")]
+[tool call: search_docs(query='Harborview invoice amount due')]
+[tool result: [{"document": "invoice_10432.txt", "score": 9, "snippet": "Document Type: Invoice Invoice Number: INV-10432 Issue Date: 2024-06-12 Due Date: 202..."}, {"document": "invoice_10501.txt", "score": 9, "snippet": "Document Type: Invoice Invoice Number: INV-10501 Issue Date: 2024-07-05 Due Date: 202..."}, {"document": "invoice_10498.txt", "score": 7, "snippet": "Document Type: Invoice Invoice Number: INV-10498 Issue Date: 2024-07-02 Due Date: 202..."}]]
+[tool call: extract_field(document='invoice_10432.txt', field='amount due')]
 [tool result: {"document": "invoice_10432.txt", "field": "Amount Due", "value": "$12,340.00"}]
 
 According to invoice_10432.txt, the amount due is $12,340.00.
 ```
+
+Note the search hit is a three-way tie-ish result (invoice_10432.txt and
+invoice_10501.txt both score 9), and neither snippet mentions "Harborview"
+by name, since the snippet window lands on the header block before the
+`Bill To` line. The model still has to call `extract_field` on the right
+document to get a grounded answer, which is exactly the ambiguity the
+two-tool split is meant to surface rather than hide.
 
 ## Running the tests
 
