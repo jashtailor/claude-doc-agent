@@ -1,0 +1,23 @@
+Document Type: Internal Memo
+Memo ID: MEMO-0087
+Date: 2024-05-02
+From: Priya Sharma, Operations Director
+To: All Staff, Warehouse Division
+Subject: Updated Safety Protocol for Loading Dock
+Status: Final
+
+Effective immediately, all personnel operating in the Newark
+        distribution center loading dock must complete the revised forklift
+        certification before their next shift. This update follows a near-miss
+        incident on 2024-04-28 involving a pallet jack and an unmarked
+        pedestrian lane.
+
+        Key changes:
+          1. Pedestrian lanes will be repainted with high-visibility tape by
+             2024-05-10.
+          2. Forklift operators must sound the horn at every blind corner.
+          3. A dock supervisor must sign off on each shift's pre-operation
+             checklist.
+
+        Questions should be directed to the Operations Director. This memo
+        supersedes the safety protocol dated 2023-11-01.
